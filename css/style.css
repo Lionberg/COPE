@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+    background-color: whitesmoke;
+    font-family: 'Open Sans', sans-serif;
+}
+.header {
+    height: 40px;
+    background-color: #ffcc6b;
+    width: 100%;
+    line-height: 38px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.floatright {
+    float: right;
+}

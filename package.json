@@ -4,6 +4,7 @@
   "dependencies": {
     "express": "latest",
     "moment": "latest",
-    "mustache": "latest"
+    "mustache": "latest",
+    "mime": "latest"
   }
 }
