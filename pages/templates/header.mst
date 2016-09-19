@@ -2,15 +2,15 @@
     this is the header
     <div class="floatright" style="margin-top: 10px; margin-right: 20px;">
         <select id="language">
-            <option id="1">English</option>
-            <option id="2">Русский</option>
+            <option id="1" value="1">English</option>
+            <option id="2" value="2">Русский</option>
         </select>
     </div>
 </div>
 <script>
 $(document).ready(function(){
     $("#language").on("change", function(){
-        alert("!");
+        $.post("/lang", {languageId: $("#language").val()}, null);
     });
 });
 </script>

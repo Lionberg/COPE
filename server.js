@@ -7,19 +7,29 @@ var logger  = require("./modules/logger");
 var lang    = require("./data/lang_ru");
 var mime    = require('mime');
 
+var bodyParser = require('body-parser')
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+}));
+
 //var bodyParser = require('body-parser');
 //var multer  = require('multer');
 var mustache = require("mustache");
 
-
-
 app.use(express.static("static"));
 //app.use(express.static(''));
+
+app.post("/lang", function(req, res){
+    var languageId = req.body.languageId;
+    logger.Log("language was changed to " + languageId);
+});
+
 app.get("/css/*", function (req, res) {
    res.sendFile(__dirname + "/" + req.url)
 });
 app.get("/node_modules/jquery/dist/*", function (req, res) {
-    logger.Log(req.url);
+
     res.writeHead(200, {'content-type': 'text/javascript'});
     var script = fs.readFileSync(__dirname + "/" + req.url, "utf8");
     res.end(script);
@@ -34,7 +44,7 @@ app.get("/", function(req, res){
     fs.readFile("pages/templates/header.mst", function(err, hdata){
 
         fs.readFile("pages/index.mst", function(err, data) {
-            logger.Log(hdata);
+
             var o = {
                 header: hdata.toString()
             };
